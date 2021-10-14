@@ -13,9 +13,19 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             '& $cardButtonRed': {
                 visibility: 'visible',
+                '& button': {
+                    '&:hover': {
+                        cursor: 'pointer'
+                    },        
+                }
             },
             '& $cardButtonGreen': {
                 visibility: 'visible',
+                '& button': {
+                    '&:hover': {
+                        cursor: 'pointer'
+                    },        
+                }
             },
         }
     },
