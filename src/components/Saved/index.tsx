@@ -1,5 +1,7 @@
 import { makeStyles } from "@material-ui/core";
+import { FC, ReactElement } from "react";
 import PropertyCard from "../PropertyCard";
+import { ICard } from "../typings";
 
 const useStyles = makeStyles((theme) => ({
     savedList: {
@@ -7,12 +9,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-const Saved = () => {
+interface IProps {
+    savedList: ICard[]
+}
+
+const Saved: FC<IProps> = ({
+    savedList,
+}): ReactElement => {
     const classes = useStyles();
     return (
         <div className={classes.savedList}>
-            {/* Todo: map the saved from savedList */}
-            <PropertyCard />
+            {savedList.map((item) => {
+                return (
+                    <PropertyCard
+                        data={item} 
+                        key={item.id} 
+                        isResults={false}
+                        savedList={savedList}
+                    />
+                );
+            })}
         </div>
     );
 }

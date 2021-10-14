@@ -1,4 +1,6 @@
 import { makeStyles } from "@material-ui/core";
+import { FC, ReactElement } from "react";
+import { ICard } from "../typings";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,11 +19,15 @@ const useStyles = makeStyles((theme) => ({
             },
         }
     },
-    cardHeader: {
+    cardHeader: (data: ICard) => {
+        const background = data.agency.brandingColors.primary
+        console.log(data.agency.brandingColors.primary);
+        return {
             padding: '15px',
-            background: '#ffe512',
+            background,
             borderTopLeftRadius: '10px',
             borderTopRightRadius: '10px',
+        };
     },
     cardImg: {
         '& img': {
@@ -47,33 +53,63 @@ const useStyles = makeStyles((theme) => ({
             border: '2px solid rgb(122 147 93)',
             borderRadius: '15px',
         }
-
+    },
+    cardButtonRed: {
+        position: 'relative',
+        bottom: '110px',
+        visibility: 'hidden',
+        textAlign: 'center',
+        '& button': {
+            padding: '0px 25px',
+            background: 'rgb(238 199 199)',
+            fontSize: '20px',
+            color: 'rgb(188 65 56)',
+            border: '2px solid rgb(188 65 56)',
+            borderRadius: '15px',
+        }
     },
 }))
 
+interface IProps {
+    data: ICard;
+    isResults: boolean;
+    savedList: ICard[]
+}
 
-const PropertyCard = () => {
-    const classes = useStyles();
+const PropertyCard: FC<IProps> = ({
+    data,
+    isResults,
+    savedList // this savedList is for finding if there is already exist property when click adding button
+}): ReactElement => {    
+    
+    const classes = useStyles(data);
+    console.log(data);
 
     return (
-        // Todo: change all the hard code to dynamic
         <div className={classes.propertyCard}>
             <div className={classes.cardHeader}>
-                <img src='https://i1.au.reastatic.net/170x32/d9e65c666e427e655fb63dcfe73f50d4ac7ff9a58c173db9474bd92e75b01070/main.gif' alt="logo" />
+                <img src={data.agency.logo} alt="logo" />
             </div>
             <div className={classes.cardImg}>
-                <img src='https://i2.au.reastatic.net/640x480/20bfc8668a30e8cabf045a1cd54814a9042fc715a8be683ba196898333d68cec/main.jpg' alt="mainImage" />
+                <img src={data.mainImage} alt="mainImage" />
             </div>
             <div className={classes.cardPrice}>
-                <h3>$560,520</h3>
+                <h3>{data.price}</h3>
             </div>
-            {/* Todo: need red and green button according to if is results */}
-            <div className={classes.cardButtonGreen}>
-                <button>
-                    Add property
-                </button>
-            </div>
-        </div>
+            {isResults ?
+                <div className={classes.cardButtonGreen}>
+                    <button>
+                        Add property
+                    </button>
+                </div>
+            :
+                <div className={classes.cardButtonRed}>
+                    <button>
+                        Remove property
+                    </button>
+                </div>
+            }
+        </div>    
     );
 }
 

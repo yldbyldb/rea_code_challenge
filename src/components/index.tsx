@@ -1,8 +1,9 @@
 import { makeStyles } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { FC, ReactElement, useEffect, useState } from "react";
 import { fetchData } from "../data/data";
 import Results from "./Results";
 import Saved from "./Saved";
+import { ICard, IData } from "./typings";
 
 const useStyles = makeStyles((theme) => ({
     propertyList: {
@@ -20,11 +21,13 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-//Todo: need to add all the type
-const PropertyList = () => {
+const PropertyList: FC = (): ReactElement => {
     const classes = useStyles();
 
-    const [state, setState] = useState({})
+    const [state, setState] = useState<IData>({
+        results: [],
+        saved: []
+    })
 
     useEffect(() => {
         const getData = async () => {
@@ -32,21 +35,27 @@ const PropertyList = () => {
             const data = JSON.parse(JSON.stringify(result));
             console.log(data);
             setState(data);
+            setSavedList(data.saved)
         }
         getData()
     }, [])
-    //Todo: get the initial state for Saved comp
+
+    const [savedList, setSavedList] = useState<ICard[]>([]);
+    
     return (
         <div className={classes.propertyList}>
             <div className={classes.propertyListItem}>
                 <h2>Results</h2>
-                {/* Todo: need to pass the state.results to Results comp */}
-                <Results /> 
+                <Results 
+                    data={state} 
+                    savedList={savedList}
+                />
             </div>
             <div className={classes.propertyListItem}>
                 <h2>Saved Properties</h2>
-                {/* Todo: need to pass the state.saved to Saved comp */}
-                <Saved />
+                <Saved 
+                    savedList={savedList}
+                />
             </div>
         </div>
     );
