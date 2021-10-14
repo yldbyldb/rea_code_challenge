@@ -56,6 +56,7 @@ const PropertyCard = () => {
     const classes = useStyles();
 
     return (
+        // Todo: change all the hard code to dynamic
         <div className={classes.propertyCard}>
             <div className={classes.cardHeader}>
                 <img src='https://i1.au.reastatic.net/170x32/d9e65c666e427e655fb63dcfe73f50d4ac7ff9a58c173db9474bd92e75b01070/main.gif' alt="logo" />

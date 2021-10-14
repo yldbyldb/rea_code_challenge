@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'flex-start'
     },
     propertyListItem: {
+        margin: '10px 40px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex- start',
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
+//Todo: need to add all the type
 const PropertyList = () => {
     const classes = useStyles();
 
