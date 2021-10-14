@@ -98,12 +98,15 @@ const PropertyCard: FC<IProps> = ({
             </div>
             {isResults ?
                 <div className={classes.cardButtonGreen}>
-                    <button>
+                    {/* Todo: onClick addProperty */}
+                    <button> 
                         Add property
                     </button>
                 </div>
             :
                 <div className={classes.cardButtonRed}>
+                    {/* Todo: onClick removeProperty */}
+
                     <button>
                         Remove property
                     </button>

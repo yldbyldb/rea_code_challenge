@@ -41,11 +41,12 @@ const PropertyList: FC = (): ReactElement => {
     }, [])
 
     const [savedList, setSavedList] = useState<ICard[]>([]);
-    
+    // Todo: addProperty & removeProperty using useCallback
     return (
         <div className={classes.propertyList}>
             <div className={classes.propertyListItem}>
                 <h2>Results</h2>
+                {/* pass addProperty & removeProperty to children */}
                 <Results 
                     data={state} 
                     savedList={savedList}
