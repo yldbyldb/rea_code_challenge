@@ -11,6 +11,7 @@ const Results = () => {
     const classes = useStyles();
     return (
         <div className={classes.resultsList}>
+            {/* Todo: map the results from data */}
             <PropertyCard />
         </div>
     );

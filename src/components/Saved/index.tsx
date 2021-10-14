@@ -11,6 +11,7 @@ const Saved = () => {
     const classes = useStyles();
     return (
         <div className={classes.savedList}>
+            {/* Todo: map the saved from savedList */}
             <PropertyCard />
         </div>
     );

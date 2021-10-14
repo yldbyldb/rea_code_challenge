@@ -66,11 +66,12 @@ const PropertyCard = () => {
             <div className={classes.cardPrice}>
                 <h3>$560,520</h3>
             </div>
-                <div className={classes.cardButtonGreen}>
-                    <button>
-                        Add property
-                    </button>
-                </div>
+            {/* Todo: need red and green button according to if is results */}
+            <div className={classes.cardButtonGreen}>
+                <button>
+                    Add property
+                </button>
+            </div>
         </div>
     );
 }

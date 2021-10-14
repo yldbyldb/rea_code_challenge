@@ -33,15 +33,17 @@ const PropertyList = () => {
         }
         getData()
     }, [])
-
+    //Todo: get the initial state for Saved comp
     return (
         <div className={classes.propertyList}>
             <div className={classes.propertyListItem}>
                 <h2>Results</h2>
-                <Results />
+                {/* Todo: need to pass the state.results to Results comp */}
+                <Results /> 
             </div>
             <div className={classes.propertyListItem}>
                 <h2>Saved Properties</h2>
+                {/* Todo: need to pass the state.saved to Saved comp */}
                 <Saved />
             </div>
         </div>
