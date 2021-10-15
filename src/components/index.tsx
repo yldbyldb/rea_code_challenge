@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core";
-import { FC, ReactElement, useEffect, useState } from "react";
+import { FC, ReactElement, useCallback, useEffect, useState } from "react";
 import { fetchData } from "../data/data";
 import Results from "./Results";
 import Saved from "./Saved";
@@ -41,21 +41,31 @@ const PropertyList: FC = (): ReactElement => {
     }, [])
 
     const [savedList, setSavedList] = useState<ICard[]>([]);
-    // Todo: addProperty & removeProperty using useCallback
+    const addProperty = useCallback((property: ICard) => {
+        setSavedList(savedList => [...savedList, property])
+    }, [])
+    const removeProperty = useCallback((property: ICard) => {
+        console.log(property);
+    }, [])
+
+
     return (
         <div className={classes.propertyList}>
             <div className={classes.propertyListItem}>
                 <h2>Results</h2>
-                {/* pass addProperty & removeProperty to children */}
                 <Results 
                     data={state} 
                     savedList={savedList}
+                    addProperty={addProperty} 
+                    removeProperty={removeProperty} 
                 />
             </div>
             <div className={classes.propertyListItem}>
                 <h2>Saved Properties</h2>
                 <Saved 
                     savedList={savedList}
+                    addProperty={addProperty} 
+                    removeProperty={removeProperty} 
                 />
             </div>
         </div>

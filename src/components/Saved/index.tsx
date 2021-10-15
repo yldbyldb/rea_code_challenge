@@ -10,11 +10,15 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface IProps {
-    savedList: ICard[]
+    savedList: ICard[];
+    addProperty: (data: ICard) => void;
+    removeProperty: (data: ICard) => void;
 }
 
 const Saved: FC<IProps> = ({
     savedList,
+    addProperty,
+    removeProperty,
 }): ReactElement => {
     const classes = useStyles();
     return (
@@ -26,6 +30,8 @@ const Saved: FC<IProps> = ({
                         key={item.id} 
                         isResults={false}
                         savedList={savedList}
+                        addProperty={addProperty} 
+                        removeProperty={removeProperty} 
                     />
                 );
             })}

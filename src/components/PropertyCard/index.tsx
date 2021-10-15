@@ -83,17 +83,36 @@ const useStyles = makeStyles((theme) => ({
 interface IProps {
     data: ICard;
     isResults: boolean;
-    savedList: ICard[]
+    savedList: ICard[];
+    addProperty: (data: ICard) => void;
+    removeProperty: (data: ICard) => void;
 }
 
 const PropertyCard: FC<IProps> = ({
     data,
     isResults,
-    savedList // this savedList is for finding if there is already exist property when click adding button
+    savedList, // this savedList is for finding if there is already exist property when click adding button
+    addProperty,
+    removeProperty,
+
 }): ReactElement => {    
     
     const classes = useStyles(data);
     console.log(data);
+
+    // To find if there is exist property when clicking add Property button
+    const addItem = (): void => {
+        const isExist = savedList.find((saved) => saved.id === data.id);
+        if (isExist) {
+            alert('This property is exist.');
+            return
+        };
+        addProperty(data)
+    };
+
+    const removeItem = (): void => {
+        removeProperty(data)
+    }
 
     return (
         <div className={classes.propertyCard}>
@@ -106,18 +125,15 @@ const PropertyCard: FC<IProps> = ({
             <div className={classes.cardPrice}>
                 <h3>{data.price}</h3>
             </div>
-            {isResults ?
+            {isResults ? // The Result list and Saved list both use the same comp, so here I try to use different button basing on isResults which means if it is for the Result list.
                 <div className={classes.cardButtonGreen}>
-                    {/* Todo: onClick addProperty */}
-                    <button> 
+                    <button onClick={ addItem }>
                         Add property
                     </button>
                 </div>
             :
                 <div className={classes.cardButtonRed}>
-                    {/* Todo: onClick removeProperty */}
-
-                    <button>
+                    <button onClick={ removeItem }>
                         Remove property
                     </button>
                 </div>
