@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 
 interface IProps {
     data: IData;
-    savedList:ICard[];
+    savedList: ICard[];
     addProperty: (data: ICard) => void;
     removeProperty: (data: ICard) => void;
 }

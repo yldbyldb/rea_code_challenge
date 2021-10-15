@@ -44,6 +44,7 @@ const backendData = {
     }]
 }
 
+// mock a `fetch` call
 export async function fetchData() {
     return new Promise(res => {
         setTimeout(res, 100, backendData)
