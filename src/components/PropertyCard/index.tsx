@@ -127,13 +127,13 @@ const PropertyCard: FC<IProps> = ({
             </div>
             {isResults ? // The Result list and Saved list both use the same comp, so here I try to use different button basing on isResults which means if it is for the Result list.
                 <div className={classes.cardButtonGreen}>
-                    <button onClick={ addItem }>
+                    <button onClick={ addItem } data-testid="addProperty">
                         Add property
                     </button>
                 </div>
             :
                 <div className={classes.cardButtonRed}>
-                    <button onClick={ removeItem }>
+                    <button onClick={ removeItem } data-testid="removeProperty">
                         Remove property
                     </button>
                 </div>
