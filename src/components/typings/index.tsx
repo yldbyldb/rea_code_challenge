@@ -12,7 +12,7 @@ export interface ICard {
 
 export interface IData {
     results: ICard[],
-    saved: ICard[]
+    saved: ICard[],
 }
 
 export interface IState {

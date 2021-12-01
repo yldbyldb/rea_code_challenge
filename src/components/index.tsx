@@ -31,7 +31,7 @@ const PropertyList: FC = (): ReactElement => {
 
     const [state, setState] = useState<IData>({
         results: [],
-        saved: []
+        saved: [],
     })
 
     useEffect(() => {
@@ -75,7 +75,7 @@ const PropertyList: FC = (): ReactElement => {
                     data={state} 
                     savedList={savedList.saved}
                     addProperty={addProperty} 
-                    removeProperty={removeProperty} 
+                    removeProperty={removeProperty}
                 />
             </div>
             <div className={classes.propertyListItem}>
